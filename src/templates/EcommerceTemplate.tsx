@@ -8,14 +8,6 @@ import { Button } from '@/components/ui/button'
 import { ShoppingCart } from 'lucide-react'
 import { useCartUI } from '@/components/CartProvider'
 import { useCart } from '@/contexts/CartContext'
-import { Input } from '@/components/ui/input'
-
-/**
- * EDITABLE TEMPLATE - EcommerceTemplate
- * 
- * Template específico para páginas de ecommerce con header, footer y cart.
- * El agente IA puede modificar completamente el diseño, colores, layout.
- */
 
 interface EcommerceTemplateProps {
   children: ReactNode
@@ -41,13 +33,17 @@ export const EcommerceTemplate = ({
   const totalItems = getTotalItems()
 
   const header = (
-    <div className={`py-4 ${headerClassName}`}>
+    <div className={`py-4 bg-black border-b border-primary/20 ${headerClassName}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/">
-              <BrandLogoLeft />
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="text-2xl">🥖</div>
+              <div>
+                <h1 className="text-xl font-bold text-gradient">Panadería</h1>
+                <p className="text-xs text-gray-400">Artesanal Mexicana</p>
+              </div>
             </Link>
           </div>
 
@@ -56,13 +52,13 @@ export const EcommerceTemplate = ({
             <nav className="flex space-x-6">
               <Link 
                 to="/" 
-                className="text-foreground/70 hover:text-foreground transition-colors"
+                className="text-gray-300 hover:text-primary transition-colors font-medium"
               >
-                Home
+                Inicio
               </Link>
               <Link 
                 to="/blog" 
-                className="text-foreground/70 hover:text-foreground transition-colors"
+                className="text-gray-300 hover:text-primary transition-colors font-medium"
               >
                 Blog
               </Link>
@@ -75,11 +71,11 @@ export const EcommerceTemplate = ({
               variant="ghost"
               size="icon"
               onClick={openCart}
-              className="relative"
+              className="relative hover:bg-primary/10 hover:text-primary transition-colors"
             >
-              <ShoppingCart className="h-5 w-5" />
+              <ShoppingCart className="h-6 w-6" />
               {totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-primary text-black text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                   {totalItems > 99 ? '99+' : totalItems}
                 </span>
               )}
@@ -90,7 +86,7 @@ export const EcommerceTemplate = ({
         {/* Page Title */}
         {pageTitle && (
           <div className="mt-6">
-            <h1 className="text-3xl font-bold text-foreground">
+            <h1 className="text-4xl font-bold text-white">
               {pageTitle}
             </h1>
           </div>
@@ -100,30 +96,36 @@ export const EcommerceTemplate = ({
   )
 
   const footer = (
-    <div className={`bg-black text-white py-12 ${footerClassName}`}>
+    <div className={`bg-black text-white py-12 border-t border-primary/20 ${footerClassName}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
-            <BrandLogoLeft />
-            <p className="mt-4 text-white/70">
-              Your trusted online store
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="text-3xl">🥖</div>
+              <div>
+                <h3 className="text-xl font-bold text-gradient">Panadería</h3>
+                <p className="text-xs text-gray-400">Artesanal Mexicana</p>
+              </div>
+            </div>
+            <p className="text-gray-400">
+              Sabores tradicionales horneados con amor
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <h3 className="font-semibold mb-4 text-white">Links</h3>
+            <h3 className="font-bold mb-4 text-primary">Enlaces</h3>
             <div className="space-y-2">
               <Link 
                 to="/" 
-                className="block text-white/70 hover:text-white transition-colors"
+                className="block text-gray-400 hover:text-primary transition-colors"
               >
-                Home
+                Inicio
               </Link>
               <Link 
                 to="/blog" 
-                className="block text-white/70 hover:text-white transition-colors"
+                className="block text-gray-400 hover:text-primary transition-colors"
               >
                 Blog
               </Link>
@@ -132,13 +134,13 @@ export const EcommerceTemplate = ({
 
           {/* Social Links */}
           <div>
-            <h3 className="font-semibold mb-4 text-white">Follow Us</h3>
+            <h3 className="font-bold mb-4 text-primary">Síguenos</h3>
             <SocialLinks />
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-white/20 text-center text-white/70">
-          <p>&copy; 2024 Your Store. All rights reserved.</p>
+        <div className="mt-8 pt-8 border-t border-primary/20 text-center text-gray-400">
+          <p>&copy; 2024 Panadería Artesanal Mexicana. Todos los derechos reservados.</p>
         </div>
       </div>
     </div>
